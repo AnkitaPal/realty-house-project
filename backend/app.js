@@ -1,14 +1,15 @@
-const http = require("http");
+import express from "express"; //Import the express dependency
+const app = express(); //Instantiate an express app, the main work horse of this server
+const port = 3002; //Save the port number where your server will be listening
 
-const hostname = "127.0.0.1";
-const port = 3002;
-
-const server = http.createServer((req, res) => {
-	res.statusCode = 200;
-	res.setHeader("Content-Type", "text/plain");
-	res.end("Hello World");
+//Idiomatic expression in express to route and respond to a client request
+app.get("/", (req, res) => {
+	//get requests to the root ("/") will route here
+	res.sendFile("index.html", { root: "." }); //server responds by sending the index.html file to the client's browser
+	//the .sendFile method needs the absolute path to the file, see: https://expressjs.com/en/4x/api.html#res.sendFile
 });
 
-server.listen(port, hostname, () => {
-	console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
+	//server starts listening for any attempts from a client to connect at port: {port}
+	console.log(`Now listening on port ${port}`);
 });
