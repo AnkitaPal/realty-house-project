@@ -4,7 +4,7 @@ import { UserController } from "../controllers/users.controllers.js";
 
 export function routes(app) {
 	// user login
-	// app.route('/login').post(UserController.login);
+	app.route("/login").post(UserController.login);
 
 	// Search User by Driver Id
 	// app.route('/searchUser/:driverID').get(verifyAccessToken, (req, res) => {
@@ -28,14 +28,20 @@ export function routes(app) {
 	// });
 
 	// Show all user
-	// app.route('/getAllUser')
-	//    .get(verifyAccessToken, (req, res) => {
-	//       User.find({}, (err, users) => {
-	//          if (err) { res.send(err) }
-	//          if (!users) { res.status(404).send({ error: { status: 404, message: 'No User Found' } }) }
-	//          else { res.status(200).send(users) }
-	//       });
-	//    });
+	app.route("/getAllUser").get((req, res) => {
+		User.find({}, (err, users) => {
+			if (err) {
+				res.send(err);
+			}
+			if (!users) {
+				res.status(404).send({
+					error: { status: 404, message: "No User Found" },
+				});
+			} else {
+				res.status(200).send(users);
+			}
+		});
+	});
 
 	// Add user
 	app.route("/addUser").post(UserController.addUser);

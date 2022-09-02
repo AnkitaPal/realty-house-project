@@ -7,11 +7,11 @@ export const UserController = {
 		try {
 			const user = await User.findOne({ email: req.body.email });
 			if (!user) throw createError.NotFound("User not found");
-
+			console.log("calling login");
 			const result = await validateSchema.validateAsync(req.body);
 			const isMatch = await user.isValidPassword(result.password);
 
-			console.log(isMatch);
+			// console.log("Match?", isMatch);
 			if (!isMatch)
 				throw createError.Unauthorized("Username/password not valid");
 
@@ -39,12 +39,12 @@ export const UserController = {
 				);
 			}
 
-			var randomPassword = Math.random().toString(36).slice(2);
+			// var randomPassword = Math.random().toString(36).slice(2);
 			var newData = {
 				firstName: result.firstName,
 				lastName: result.lastName,
 				email: result.email,
-				password: randomPassword,
+				password: result.password,
 				phoneNumber: result.phoneNumber,
 			};
 

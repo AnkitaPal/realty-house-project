@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
+app.enable("trust proxy");
 
 routes(app);
 //Idiomatic expression in express to route and respond to a client request
