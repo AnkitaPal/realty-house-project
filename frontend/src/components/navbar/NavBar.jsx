@@ -2,8 +2,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function CollapsibleNavbar() {
+function CollapsibleNavbar(props) {
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 			<Container>
@@ -31,10 +32,11 @@ function CollapsibleNavbar() {
 					</Nav>
 					<Nav>
 						{/* <Nav.Link href="#deets">More deets</Nav.Link> */}
-						<Nav.Link eventKey={2} href="#memes">
-							Dank memes
-						</Nav.Link>
-						<NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+						<FontAwesomeIcon icon="fa-thin fa-user" />
+						<NavDropdown
+							title={props.user.firstName}
+							id="collasible-nav-dropdown"
+						>
 							<NavDropdown.Item href="#action/3.1">
 								Settings
 							</NavDropdown.Item>

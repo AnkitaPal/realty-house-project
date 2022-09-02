@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Toast } from "react-bootstrap";
 import AuthService from "../services/AuthService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getUser } from "../services/UserInfo";
 
 export default function LoginForm() {
 	const [showPassword, setShowPassword] = useState(false);
@@ -31,8 +32,9 @@ export default function LoginForm() {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		// setLogin(true);
-		console.log(email.value, password.value);
-		const userFromCache = JSON.parse(localStorage.getItem("user"));
+		// const email1 = email.value;
+		// const password1 = password.value;
+		const userFromCache = getUser();
 		if (userFromCache === null) {
 			await AuthService.login(email.value, password.value).then(
 				() => {
@@ -47,7 +49,7 @@ export default function LoginForm() {
 					// navigate("/FirstPage");
 				},
 				(error) => {
-					console.log(error.response.status);
+					console.log(error);
 					const resMessage =
 						(error.response &&
 							error.response.data &&

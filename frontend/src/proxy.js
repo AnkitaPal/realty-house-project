@@ -4,6 +4,7 @@ module.exports = function (app) {
 	app.use(
 		createProxyMiddleware({
 			target: "http://localhost:3002",
+			"Content-Type": "application/json",
 			changeOrigin: true,
 			"Access-Control-Allow-Origin": false,
 		})
@@ -16,3 +17,4 @@ module.exports = function (app) {
 // 		changeOrigin: true,
 // 	})
 // );
+// const { createProxyMiddleware } = require("http-proxy-middleware");

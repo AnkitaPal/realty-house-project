@@ -18,7 +18,7 @@ export const removeUserCache = () => {
 };
 
 // set the token and user from the local storage
-export const setUserInfo = (token, user) => {
+export const setUserInfo = (user) => {
 	// localStorage.setItem("accessToken", token);
 	localStorage.setItem("user", JSON.stringify(user));
 };

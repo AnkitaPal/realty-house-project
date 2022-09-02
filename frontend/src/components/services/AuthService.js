@@ -1,10 +1,10 @@
-import axios from "axios";
 import {
 	// 	getToken,
 	setUserInfo,
 	removeUserCache,
 	// 	setUserTutorialDatabase,
 } from "./UserInfo";
+import axios from "axios";
 // import { licenseType } from "./LicenseType";
 // const API_URL = "http://localhost:3000/api/auth/";
 
@@ -32,21 +32,18 @@ import {
 
 const login = async (email, password) => {
 	console.log(email, password);
-	const response = await axios.post(
-		"http://localhost:3002/login",
-		{
-			email: email,
-			password: password,
-		},
-		{
-			headers: {
-				changeOrigin: true,
-				"Access-Control-Allow-Origin": false,
-			},
-		}
-	);
-	// console.log(response);
-	setUserInfo(response.data.user);
+	// const response = await fetch("http://localhost:3002/login", {
+	// 	method: "POST",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 		changeOrigin: true,
+	// 		"Access-Control-Allow-Origin": false,
+	// 	},
+	// 	body: { email: email, password: password },
+	// });
+	const response = await axios.post("/login", { email, password });
+	console.log(response.data);
+	setUserInfo(response.data);
 };
 
 const logout = () => {

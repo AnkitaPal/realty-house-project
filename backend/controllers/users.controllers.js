@@ -17,7 +17,7 @@ export const UserController = {
 
 			// const accessToken = await signAccessToken(user.id);
 			// const refreshToken = await signRefreshToken(user.id);
-			res.json({ user });
+			res.json(user);
 		} catch (error) {
 			next(error);
 		}
